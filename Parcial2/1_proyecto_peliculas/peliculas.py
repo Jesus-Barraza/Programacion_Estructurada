@@ -18,61 +18,79 @@ def AgregarPeliculas():
 def MostrarPeliculas():
     BorrarPantalla()
     print("\n\t\t -\| Lista de películas |/-\n")
-    for i in range (0,len(peliculas)):
-        print(f"[{i+1}] {peliculas[i]}")
+    if len(peliculas) > 0:
+        for i in range (0,len(peliculas)):
+            print(f"[{i+1}] {peliculas[i]}")
+    else:
+        print("La lista de películas se encuentra vacía")
 
 def BorrarPeliculas():
     BorrarPantalla()
-    errorDet=True
-    while errorDet:
-        try:
-            print("\n\t -\| Borrar películas |/-\n")
-            peliculas.remove(input("Ingrese el nombre de la película a borrar: ").lower().strip())
-        except ValueError:
-            BorrarPantalla()
-            print("Esta película no se encuentra en la lista, inténtelo de nuevo\n\n")
-        else:
-            errorDet=False
-            print("\n\t |||¡La operación se realizó con éxito!|||")
+    print("\n\t -\| Borrar películas |/-\n")
+    nomb=input("Ingrese el nombre de la película a borrar: ").lower().strip()
+    if nomb not in peliculas:
+        BorrarPantalla()
+        print("Esta película no se encuentra en la lista\n\n")
+    else:
+        cont=0
+        for pos in range(0,len(peliculas)):
+            if nomb in peliculas[pos]:
+                print("\nSe encontró una película\n")
+                opc=input("¿Desea quitar o borrar la película del sistema? \n(si/no): ")
+                if opc=="si":
+                    print(f"Se borró la película {nomb} en la casilla {pos+1}")
+                    peliculas.pop(pos-cont)
+                    cont+=1
+        print(f"\nSe borraron {cont} películas con el título {nomb}")
+        print("\n\t |||¡La operación se realizó con éxito!|||")
 
 def ModificarPeliculas():
     BorrarPantalla()
-    errorDet=True
-    while errorDet:
-        try:
-            print("\n\t -\| Modificar películas |/-\n")
-            posicion=peliculas.index(input("Ingrese el nombre de la película: ").lower().strip())
-        except ValueError:
-            BorrarPantalla()
-            print("Esta película no se encuentra en la lista, inténtelo de nuevo\n\n")
-        else:
-            errorDet=False
-    peliculas[posicion]=input("Ingrese de qué manera desea modificarlo: ")
-    print("\n\t |||¡La operación se realizó con éxito!|||")
+    print("\n\t -\| Modificar películas |/-\n")
+    nomb=input("Ingrese el nombre de la película: ").lower().strip()
+    if nomb not in peliculas:
+        BorrarPantalla()
+        print("Esta película no se encuentra en la lista\n\n")
+    else:
+        cont=0
+        for pos in range(0,len(peliculas)):
+            if nomb in peliculas[pos]:
+                print("\nSe encontró una película\n")
+                opc=input("\n\t¿Desea modificar la película? \n\t\t(si/no):").lower().strip()
+                if opc=="si":
+                    peliculas[pos]=input("Introduzca el nuevo nombre de la película: ").lower().strip()
+                    cont+=1
+        print(f"\n\tSe modificaron {cont} películas")
+        print("\n\t |||¡La operación se realizó con éxito!|||")
+
+
 
 def BuscarPeliculas():
     BorrarPantalla()
-    errorDet=True
-    while errorDet:
-        try:
-            print("\n\t -\| Buscar películas |/-\n")
-            nombre=input("Ingrese el nombre de la película: ").lower().strip()
-            posicion=peliculas.index(nombre)
-        except ValueError:
-            BorrarPantalla()
-            print("Esta película no se encuentra en la lista, inténtelo de nuevo\n\n")
-        else:
-            errorDet=False
-            print(f"\n En la posición {posicion} se encuentra la película {nombre}")
+    cont=0
+    print("\n\t -\| Buscar películas |/-\n")    
+    nombre=input("Ingrese el nombre de la película: ").lower().strip()
+    if nombre not in peliculas:
+        BorrarPantalla()
+        print("Esta película no se encuentra en la lista\n\n")
+    else:
+        for pos in range(0,len(peliculas)):
+            if nombre == peliculas[pos]:
+                print(f"En la posición {pos+1} se encuentra la película {nombre}")
+                cont+=1
+        print(f"\nHay {cont} película(s) con el nombre {nombre}")
     print("\n\t |||¡La operación se realizó con éxito!|||")
 
 def LimpiarPeliculas():
-    BorrarPantalla()
-    eleccion=""
-    while eleccion=="":
-        eleccion=input("\n\t\033[1m |||¡CUIDADO!|||\033[0m\n\n¿Desea limpiar la lista de películas?\n\t(s/n): ").lower().strip()
-        if eleccion=="s":
+    elec=""
+    if elec != ("si" or "no"):
+        BorrarPantalla()
+        print("\n\t\t -\|Limpiar o borrar todas las listas|/-")
+        elec=str(input("\n\t\033[1m |||¡CUIDADO!|||\033[0m\n\n¿Desea limpiar la lista de películas?\n\t(si/no): ")).lower().strip()
+        if elec=="si":
             peliculas.clear()
             print("\n\t |||¡La operación se realizó con éxito!|||")
-        else:
+        elif elec=="no":
             print("\n\t |||Se ha cancelado la limpieza de la lista|||")
+        else:
+            print("\n\t Operación no válida, inténtelo de nuevo")
