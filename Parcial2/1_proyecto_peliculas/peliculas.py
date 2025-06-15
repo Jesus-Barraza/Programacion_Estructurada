@@ -29,18 +29,18 @@ def BorrarPeliculas():
     print("\n\t -\| Borrar películas |/-\n")
     nomb=input("Ingrese el nombre de la película a borrar: ").lower().strip()
     if nomb not in peliculas:
-        BorrarPantalla()
         print("Esta película no se encuentra en la lista\n\n")
     else:
+        resp="si"
         cont=0
-        for pos in range(0,len(peliculas)):
-            if nomb in peliculas[pos]:
-                print("\nSe encontró una película\n")
-                opc=input("¿Desea quitar o borrar la película del sistema? \n(si/no): ")
-                if opc=="si":
-                    print(f"Se borró la película {nomb} en la casilla {pos+1}")
-                    peliculas.pop(pos-cont)
-                    cont+=1
+        while nomb in peliculas and resp=="si":
+            print("\nSe encontró una película\n")
+            resp=input("\t¿Desea retirar la película de la lista? \n(si/no): ")
+            if resp=="si":
+                pos=peliculas.index(nomb)
+                print(f"\n Se borró la película {nomb}, el cual estaba en la posición {pos+1}")
+                peliculas.remove(nomb)
+                cont+=1
         print(f"\nSe borraron {cont} películas con el título {nomb}")
         print("\n\t |||¡La operación se realizó con éxito!|||")
 
@@ -49,7 +49,6 @@ def ModificarPeliculas():
     print("\n\t -\| Modificar películas |/-\n")
     nomb=input("Ingrese el nombre de la película: ").lower().strip()
     if nomb not in peliculas:
-        BorrarPantalla()
         print("Esta película no se encuentra en la lista\n\n")
     else:
         cont=0
@@ -71,7 +70,6 @@ def BuscarPeliculas():
     print("\n\t -\| Buscar películas |/-\n")    
     nombre=input("Ingrese el nombre de la película: ").lower().strip()
     if nombre not in peliculas:
-        BorrarPantalla()
         print("Esta película no se encuentra en la lista\n\n")
     else:
         for pos in range(0,len(peliculas)):
