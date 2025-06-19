@@ -15,7 +15,7 @@ opcion=True
 #Menú
 peliculas.BorrarPantalla()
 while opcion:
-    print("\n\t\t\t -\| GESTION DE PELICULAS |/- \n\n\t 1.- Agregar \n\t 2.- Borrar \n\t 3.- Mostrar \n\t 4.- Agregar característica \n\t 5.- Modificar característica \n\t 6.- Borrar característica \n\t 7.- Salir")
+    print("\n\t\t\t -\| GESTIÓN DE PELÍCULAS |/- \n\n\t 1.- Agregar \n\t 2.- Borrar \n\t 3.- Mostrar \n\t 4.- Agregar característica \n\t 5.- Modificar característica \n\t 6.- Borrar característica \n\t 7.- Salir")
     opcion=str(input("\n\t\t Elige una opción \n\t(1/2/3/4/5/6/7):")).lower().strip()
 
     match opcion:

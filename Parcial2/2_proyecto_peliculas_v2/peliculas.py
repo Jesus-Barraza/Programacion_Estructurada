@@ -24,17 +24,73 @@ def EsperarTecla():
 
 def AgregarPeliculas():
     BorrarPantalla()
-    print("\n\t -\|Agregar película|/-")
-    peliculas.update(input("Ingrese el nombre de la película: ").upper().strip())
-    atributo=input("Ingresa la característica a añadir: ").lower().append()
-    valor_atributo=input("Ingresa el valor de la característica: ").lower().append()
+    print("\n\t\t -\|Agregar película|/-")
+    peliculas.update({"nombre":input("Ingrese el nombre de la película: ").lower().strip()})
+    peliculas.update({"categoria":input("Ingrese la categoría de la película: ").lower().strip()})
+    peliculas.update({"clasificacion":input("Ingrese la clasificación de la película: ").upper().strip()})
+    peliculas.update({"genero":input("Ingrese el género de la película: ").lower().strip()})
+    peliculas.update({"idioma":input("Ingrese el idioma de la película: ").lower().strip()})
+    print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
+#o puedes usar pelicula["nombre"]=input("Ingrese la categoría de la película: ").lower().strip()
 
-#def MostrarPeliculas():
+def MostrarPeliculas():
+    BorrarPantalla()
+    print("\n\t\t-\|Listas de películas|/-")
+    if len(peliculas) > 0:
+        for i in peliculas:
+            print(f"{i} : {peliculas[i]}")
+        print("\n\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO |||")
+    else:
+        print("\n---La lista se encuentra vacía---\n")
 
-#def BorrarPeliculas():
+def BorrarPeliculas():
+    BorrarPantalla()
+    print("\n\t\t-\|Borrar película|/-")
+    if len(peliculas) > 0:
+        resp="a"
+        while resp!="si" and resp!="no":
+            resp=input("\n\n\t\t|||CUIDADO|||\n\n¿Desea borrar la película registrada al momento?\n(si/no): ").lower().strip()
+            match resp:
+                case "si":
+                    peliculas.clear()
+                    print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
+                case "no":
+                    print("\n\t---Se canceló la operación---")
+                case _:
+                    BorrarPantalla()
+                    print("Operación no válida, vuelva a intentarlo")
+                    print("\n\t\t-\|Borrar película|/-")
+                    resp="a"
+    else:
+        print("\n---No se puede borrar porque no hay película en el sistema---")
 
-#def AgregarCaracteristica():
+def AgregarCaracteristica():
+    BorrarPantalla()
+    opc="si"
+    print("\n\t\t-\| Agregar características a la película|/-\n")
+    while opc=="si":
+        cate=input("Ingrese la característica a agregar: ").lower().strip()
+        peliculas.update({cate:input(f"Ingrese el valor de la característica {cate}: ").lower().strip()})
+        opc="¿Desea agregar alguna otra característica?\n(si/no): " 
+    print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
 
-#def ModificarCaracteristica():
+def ModificarCaracteristica():
+    BorrarPantalla()
+    print("\n\t\t-\|Modificar características a la película")
+    if len(peliculas) > 0:
+        for i in peliculas:
+            opc=input(f"¿Desea modificar el valor del {i}\n(si/no): ").lower().strip()
+            if opc=="si":
+                if i=="clasificacion":
+                    peliculas[i]=input(f"Ingrese el nnuevo valor del {i}: ").upper().strip()
+                else:
+                    peliculas[i]=input(f"Ingrese el nnuevo valor del {i}: ").lower().strip()
+            else:
+                continue
+        print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
+    else:
+        print("\n---No se puede modificar porque no hay película en el sistema---")
+
+
 
 #def BorrarCaracteristica():
