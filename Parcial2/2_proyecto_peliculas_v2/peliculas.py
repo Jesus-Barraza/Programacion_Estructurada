@@ -91,5 +91,25 @@ def ModificarCaracteristica():
     else:
         print("\n---No se puede modificar porque no hay película en el sistema---")
 
-#def BorrarCaracteristica():
-    
+def BorrarCaracteristica():
+    BorrarPantalla()
+    print("\n\t\t -\| Borrar una caracterísitica a la película|/-\n")
+    if len(peliculas) > 0:
+        print("\tValores actuales:")
+        for i in peliculas:
+            print(f"{i} : {peliculas[i]}")
+        opc=input("\n¿Desea borrar alguna característica? \n(si/no): ").lower().strip()
+        match opc:
+            case "si":
+                cara=input("Ingresa la característica a borrar/quitar: ").lower().strip()
+                if cara in peliculas:
+                    peliculas.pop(cara)
+                    print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
+                else:
+                    print("---No se encuentra la característica anterior---")
+            case "no":
+                print("\n\t---Se canceló la operación---")
+            case _:
+                print("\n\t---La opción no es correcta, regresando al menú---")
+    else:
+        print("\n --- No se puede borrar porque no hay película en el sistema---")
