@@ -44,8 +44,6 @@ def BorrarPeliculas():
                     print(f"\n Se borró la película{nomb}, el cual estaba en la posición {pos+1}")
                     peliculas.pop(pos)
                     cont+=1
-                else:
-                    continue
         print(f"\nSe borraron {cont} películas con el título {nomb}")
         print("\n\t |||¡La operación se realizó con éxito!|||")
 
