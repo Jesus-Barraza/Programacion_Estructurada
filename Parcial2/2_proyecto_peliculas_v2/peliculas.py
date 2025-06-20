@@ -76,21 +76,20 @@ def AgregarCaracteristica():
 
 def ModificarCaracteristica():
     BorrarPantalla()
-    print("\n\t\t-\|Modificar características a la película")
+    print("\n\t\t-\|Modificar características a la película|/-\n")
     if len(peliculas) > 0:
         for i in peliculas:
-            opc=input(f"¿Desea modificar el valor del {i}\n(si/no): ").lower().strip()
+            print(f"valor actual de {i}: {peliculas[i]}")
+            opc=input(f"¿Desea modificar el valor del {i}?\n(si/no): ").lower().strip()
             if opc=="si":
                 if i=="clasificacion":
                     peliculas[i]=input(f"Ingrese el nnuevo valor del {i}: ").upper().strip()
                 else:
                     peliculas[i]=input(f"Ingrese el nnuevo valor del {i}: ").lower().strip()
-            else:
-                continue
+            print("")
         print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
     else:
         print("\n---No se puede modificar porque no hay película en el sistema---")
 
-
-
 #def BorrarCaracteristica():
+    
