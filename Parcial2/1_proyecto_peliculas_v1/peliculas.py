@@ -31,16 +31,21 @@ def BorrarPeliculas():
     if nomb not in peliculas:
         print("Esta película no se encuentra en la lista\n\n")
     else:
-        resp="si"
         cont=0
-        while nomb in peliculas and resp=="si":
-            print("\nSe encontró una película\n")
-            resp=input("\t¿Desea retirar la película de la lista? \n(si/no): ")
-            if resp=="si":
-                pos=peliculas.index(nomb)
-                print(f"\n Se borró la película {nomb}, el cual estaba en la posición {pos+1}")
-                peliculas.remove(nomb)
-                cont+=1
+        pos=0
+        while pos < len(peliculas):
+            i=peliculas[pos]
+            pos+=1
+            if i==nomb:
+                print("\nSe encontró una película\n")
+                resp=input("¿Desea retirar la película? \n (si/no): ").lower().strip()
+                if resp=="si":
+                    pos-=1
+                    print(f"\n Se borró la película{nomb}, el cual estaba en la posición {pos+1}")
+                    peliculas.pop(pos)
+                    cont+=1
+                else:
+                    continue
         print(f"\nSe borraron {cont} películas con el título {nomb}")
         print("\n\t |||¡La operación se realizó con éxito!|||")
 

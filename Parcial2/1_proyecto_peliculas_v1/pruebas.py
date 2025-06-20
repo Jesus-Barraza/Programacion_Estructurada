@@ -5,6 +5,28 @@ def BorrarPantalla():
     import os
     os.system("cls")
 
+#Original
+#def BorrarPeliculas():
+#    BorrarPantalla()
+#    print("\n\t -\| Borrar películas |/-\n")
+#    nomb=input("Ingrese el nombre de la película a borrar: ").lower().strip()
+#    if nomb not in peliculas:
+#        print("Esta película no se encuentra en la lista\n\n")
+#    else:
+#        resp="si"
+#        cont=0
+#        while nomb in peliculas and resp=="si":
+#            print("\nSe encontró una película\n")
+#            resp=input("\t¿Desea retirar la película de la lista? \n(si/no): ")
+#            if resp=="si":
+#                pos=peliculas.index(nomb)
+#                print(f"\n Se borró la película {nomb}, el cual estaba en la posición {pos+1}")
+#                peliculas.remove(nomb)
+#                cont+=1
+#                print(f"\nSe borraron {cont} películas con el título {nomb}")
+#        print("\n\t |||¡La operación se realizó con éxito!|||")
+
+
 #intento 1
 #def BorrarPeliculas():
 #    BorrarPantalla()
@@ -55,13 +77,5 @@ def BorrarPantalla():
 #        print(f"\nSe borraron {cont} películas con el título {nomb}")
 #        print("\n\t |||¡La operación se realizó con éxito!|||")
 
-#Intento 3
-def BorrarPeliculas():
-    BorrarPantalla()
-    print("\n\t -\| Borrar películas |/-\n")
-    nomb=input("Ingrese el nombre de la película a borrar: ").lower().strip()
-    if nomb not in peliculas:
-        print("Esta película no se encuentra en la lista\n\n")
-    else:
 
-BorrarPeliculas()
+#BorrarPeliculas()
