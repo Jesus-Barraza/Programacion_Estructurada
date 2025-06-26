@@ -1,32 +1,44 @@
+'''Base a utilizar:
+pos0: nombre
+pos1: calificación 1
+pos2: calificación 2
+pos3: calificación 3
+'''
+
 #Importaciones
 import calificaciones
 
-#Iniciador
-entrace=True
+#Función
+def main():
+    #Iniciador
+    opc=True
 
-#Menú
-calificaciones.BorrarPantalla()
-while entrace:
-    print("\t\t -\| Sistema de Gestión de Calificaciones |/-")
-    entrace=input("\n\tElige una opción \n1.- Agregar \n2.- Mostrar \n3.- Calcular promedios \n4.- SALIR \n (1-4): ")
-    match entrace:
-        case "1":
-            calificaciones.BorrarPantalla()
-            calificaciones.AgregarCalificaciones()
-            calificaciones.EsperarTecla()
-        case "2":
-            calificaciones.BorrarPantalla()
-            calificaciones.MostrarCalificaciones()
-            calificaciones.EsperarTecla()
-        case "3":
-            calificaciones.BorrarPantalla()
-            calificaciones.PromediarCalificaciones()
-            calificaciones.EsperarTecla()
-        case "4":
-            calificaciones.BorrarPantalla()
-            print("\t--- Se ha terminado la ejecución del sistema --- \n\n\t\t ||| MUCHAS GRACIAS |||")
-            calificaciones.EsperarTecla()
-            entrace=False
-        case _:
-            calificaciones.BorrarPantalla()
-            print("\t--- ❌Entrada no válida, vuelva a intentar❌ ---\n")
+    #Base
+    lista=[]
+
+    #Menú
+    calificaciones.BorrarPantalla()
+    while opc:
+        opc=calificaciones.Menu()
+        match opc:
+            case "1":
+                calificaciones.AgregarCalificaciones(lista)
+                calificaciones.EsperarTecla()
+            case "2":
+                calificaciones.MostrarCalificaciones(lista)
+                calificaciones.EsperarTecla()
+            case "3":
+                calificaciones.PromediarCalificaciones(lista)
+                calificaciones.EsperarTecla()
+            case "4":
+                calificaciones.BorrarPantalla()
+                print("\t--- Se ha terminado la ejecución del sistema --- \n\n\t\t ||| MUCHAS GRACIAS |||")
+                calificaciones.EsperarTecla()
+                opc=False
+            case _:
+                calificaciones.BorrarPantalla()
+                print("\t--- ❌Entrada no válida, vuelva a intentar❌ ---\n")
+                opc=True
+
+if __name__ == "__main__":
+    main()
