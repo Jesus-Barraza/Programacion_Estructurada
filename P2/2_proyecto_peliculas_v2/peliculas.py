@@ -83,9 +83,9 @@ def ModificarCaracteristica():
             opc=input(f"¿Desea modificar el valor del {i}?\n(si/no): ").lower().strip()
             if opc=="si":
                 if i=="clasificacion":
-                    peliculas[i]=input(f"Ingrese el nnuevo valor del {i}: ").upper().strip()
+                    peliculas[i]=input(f"Ingrese el nuevo valor del {i}: ").upper().strip()
                 else:
-                    peliculas[i]=input(f"Ingrese el nnuevo valor del {i}: ").lower().strip()
+                    peliculas[i]=input(f"Ingrese el nuevo valor del {i}: ").lower().strip()
             print("")
         print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
     else:
