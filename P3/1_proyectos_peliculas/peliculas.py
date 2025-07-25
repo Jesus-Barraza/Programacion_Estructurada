@@ -6,15 +6,23 @@
 - Idioma
 '''
 #Importaciones
-import mysql.connector
 import os
+try: 
+    import mysql.connector
+    from mysql.connector import Error
+except ModuleNotFoundError:
+    os.system("python -m pip install mysql-connector-python")
 
 #Entrada a la base de datos
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="pma",
-  password=""
-)
+try:
+    mydb = mysql.connector.connect(
+    host="::1",
+    user="root",
+    password="",
+    use_pure=True
+    )
+except Error as e:
+    print(f"El error que se presenta es: {e}")
 
 #Base de datos
 def BD():
@@ -61,13 +69,9 @@ def MostrarPeliculas():
     mycursor = mydb.cursor()
     BorrarPantalla()
     print("\n\t\t-\|Listas de películas|/-")
-    a=f""
     mycursor.execute("SELECT * FROM peliculas")
-    for x in mycursor:
-        a+=f"{x}"
-    if a != "":
-        mycursor.execute("SELECT * FROM peliculas")
-        myresult = mycursor.fetchall()
+    myresult = mycursor.fetchall()
+    if myresult:
         for x in myresult:
             print(x)
         print("\n\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO |||")
@@ -91,7 +95,8 @@ def BuscarPeliculas():
             sql=("SELECT * FROM peliculas WHERE nombre = %s")
             var=[nom]
             mycursor.execute(sql, var)
-            for x in mycursor:
+            myresult=mycursor.fetchall()
+            for x in myresult:
                 print(x)
             print("\n\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO |||")
         else:
@@ -109,33 +114,65 @@ def ModificarPeliculas():
     for x in mycursor:
         a+=f"{x}"
     if a != "":
-        mycursor.execute("SELECT nombre FROM peliculas")
+        mycursor.execute("SELECT * FROM peliculas")
         a=f""
         print("\tLista actual:")
-        for x in mycursor:
+        myresult=mycursor.fetchall()
+        for x in myresult:
             print(x)
             a+=f"{x}"
         opc=input("\n¿Desea modificar alguna película? \n(si/no): ").lower().strip()
         match opc:
             case "si":
                 nom=input("Ingresa el nombre de la película a modificar: ").lower().strip()
-                var=f"('{nom}',)"
+                var=f"'{nom}'"
                 if var in a:
-                    cara=input("Ingresa la característica a modificar: ").lower().strip()
-                    Campos_validos=["nombre", "categoria", "clasificacion", "genero", "idioma"]
-                    if cara in Campos_validos:
-                        if cara == "clasificacion":
-                            new=input(f"Ingresa el nuevo valor de {cara}: ").upper().strip()
-                        else:
-                            new=input(f"Ingresa el nuevo valor de {cara}: ").lower().strip()
-                        sql=(f"UPDATE peliculas SET {cara} = %s WHERE nombre = %s")
-                        var=(new, nom)
+                    sql="SELECT * FROM peliculas WHERE nombre = %s"
+                    var=(nom, )
+                    b=[]
+                    mycursor.execute(sql, var)
+                    myresult=mycursor.fetchall()
+                    for x in myresult:
+                        print(x)
+                        b.append(x)
+                    if len(b) > 1:
+                        sql="SELECT id FROM peliculas WHERE nombre = %s"
+                        var=(nom, )
+                        mycursor.execute(sql, var)    
+                        a=""
+                        for x in mycursor:
+                            a+=f"{x}"
+                        print("Hay más de una película")
+                        ciclo=True
+                        while ciclo:
+                            try:
+                                id=int(input("Ingrese la ID de la película a modificar (solo números): "))
+                                ciclo=False
+                            except ValueError:
+                                print("Error, ingrese solo números: ")
+                        id=f"{id}"
+                    else:
+                        sql="SELECT id FROM peliculas WHERE nombre = %s"
+                        var=(nom, )
+                        mycursor.execute(sql, var)
+                        myresult = mycursor.fetchall()
+                        id=""
+                        for x in myresult:
+                            for y in x:
+                                id = int(y)
+                    nomb=input("Ingrese el nuevo nombre: ").lower().strip()
+                    cat=input("Ingrese la nueva categoría: ").lower().strip()
+                    clas=input("Ingrese la nueva clasificación: ").upper().strip()
+                    gen=input("Ingrese el nuevo género: ").lower().strip()
+                    idi=input("Ingrese el nuevo idioma: ").lower().strip()
+                    muestra=[nomb, cat, clas, gen, idi,]
+                    lista=["nombre", "categoria", "clasificacion", "genero", "idioma"]
+                    for con in range(0, len(lista)):
+                        sql=f"UPDATE peliculas SET {lista[con]} = %s where id = {id}"
+                        var=[muestra[con], ]
                         mycursor.execute(sql, var)
                         mydb.commit()
-                        print(mycursor.rowcount, f"películas cambiadas de {nom} a {new}")
-                        print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
-                    else:
-                        print("\n\t---Característica no válida---\n")
+                    print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
                 else:
                     print("\n\t---No se encuentra la película anterior---\n")
             case "no":
@@ -178,8 +215,10 @@ def BorrarPelicula():
                             match opc2:
                                 case "si":
                                     sql=f"DELETE FROM peliculas WHERE id = %s"
-                                    mycursor.execute(sql, (x[0], ))
-                                    print("\n\t---Se borró la película con éxito---\t")
+                                    var=(x[0], )
+                                    mycursor.execute(sql, var)
+                                    mydb.commit()
+                                    print("\n\t|||Se borró la película con éxito|||\t")
                                     con=False
                                 case "no":
                                     con=False
@@ -191,6 +230,8 @@ def BorrarPelicula():
                 print("\n\t---Se canceló la operación---")
             case _:
                 print("\n\t---La opción no es correcta, regresando al menú---")
+    else:
+        print("\n---No se puede borrar porque no hay película en el sistema---")
     
 def LimpiarPeliculas():
     mycursor = mydb.cursor()
@@ -208,8 +249,8 @@ def LimpiarPeliculas():
             match resp:
                 case "si":
                     mycursor.execute("DROP TABLE peliculas")
-                    mycursor.execute("CREATE TABLE peliculas (id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, nombre varchar(100) DEFAULT NULL, categoria varchar(100) DEFAULT NULL, clasificacion varchar(100) DEFAULT NULL, genero varchar(100) DEFAULT NULL, idioma varchar(100) DEFAULT NULL )")
-                    print("\n\t ||| LA OPERACIÓN SE REALIZÓ CON ÉXITO! |||")
+                    BD()
+                    print("\n\t|||Se borró la lista con éxito|||\t")
                 case "no":
                     print("\n\t---Se canceló la operación---")
                 case _:
