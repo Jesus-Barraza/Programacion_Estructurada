@@ -1,5 +1,4 @@
 import funciones
-import conexionBD
 from notas import nota
 from usuarios import usuario
 import getpass
@@ -143,8 +142,46 @@ def menu_notas(usuario_id,nombre,apellidos):
                 else:
                     print("\n\t ... Se canceló la operación con éxito ...")
             funciones.esperarTecla()    
+        
+        elif opcion == '5' or opcion == "BUSCAR":
+            funciones.borrarPantalla()
+            lista=nota.mostrar_nota(usuario_id)
+            if len(lista) > 0:
+                print(f"\n\t .:: Lista de notas de {nombre} ::.")
+                print(f"{'ID':<10} {'Titulo':<15} {'Descripcion':<50} {'Fecha':<15}\n{'_'*80}")
+                for i in lista:
+                    print(f"{i[0]:<10} {i[2]:15} {i[3]:<50} {i[4]}")
+                print(f"{'_'*80}") 
+                a=True
+            else:
+                print(f"\n\t ... No fue posible buscar las notas porque no hay notas para este usuarios ...")
+                a=False
+            if a:
+                c=True
+                while c:
+                    b=True
+                    while b:
+                        try: 
+                            id=int(input("\tIngrese la ID de la nota a buscar (si quiere cancelar la operación escriba solo '0'): "))
+                        except TypeError:
+                            print("\t ... Operación incorrecta, ingrese solo números ...\n")
+                            b=True
+                        else:
+                            b=False
+                    if id > 0:
+                        nota=nota.buscar_nota(id)
+                        for i in nota:
+                            print(f"\n\t\t\t\t{i[4]}\n\n\t\t{i[0]}: {i[2]}\n{i[3]}")
+                        print(f"\n\t ::: SE ENCONTRÓ LA NOTA {id} CON ÉXITO ::: ")
+                        c=False
+                    elif id == 0:
+                        print("\n\t ... Se canceló la operación con éxito ...")
+                        c=False
+                    else:
+                        print("\t ID de nota no válido, inténtelo de nuevo")
+                        c=True
 
-        elif opcion == '5' or opcion=="SALIR":
+        elif opcion == '6' or opcion=="SALIR":
             break
 
         else:

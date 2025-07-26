@@ -14,10 +14,10 @@ date=datetime.datetime.now()
 cursor.execute("INSERT INTO notas (usuario_id, titulo, descripcion, fecha) VALUES (%s, %s, %s, %s)",(id, h1, desc, date))
 '''
 
-def mostrar_nota(id):
+def mostrar_nota(uid):
     try:
-        cursor.execute("SELECT * FROM notas WHERE id = %s", (id,))
-        return cursor.fetchall()
+        cursor.execute("SELECT * FROM notas WHERE usuario_id = %s", (uid,))
+        return cursor.fetchone()
     except:
         return []
 
@@ -44,3 +44,10 @@ def borrar_notas(id):
         return True
     except:
         return False
+
+def buscar_nota(id):
+    try:
+        cursor.execute("SELECT * FROM notas WHERE id = %s", (id))
+        return cursor.fetchone()
+    except:
+        return []

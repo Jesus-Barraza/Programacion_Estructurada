@@ -11,6 +11,6 @@ def menu_usurios():
    return opcion
 
 def menu_notas():
-   print("\n \t .::  Menu Notas ::. \n\t1.- Crear \n\t2.- Mostrar \n\t3.- Cambiar \n\t4.- Eliminar \n\t5.- Salir """)
+   print("\n \t .::  Menu Notas ::. \n\t1.- Crear \n\t2.- Mostrar \n\t3.- Cambiar \n\t4.- Eliminar \n\t5.- Buscar \n\t6.- Salir """)
    opcion = input("\t\t Elige una opción: ").upper().strip()
    return opcion   
