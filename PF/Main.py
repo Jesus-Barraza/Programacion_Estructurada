@@ -32,6 +32,15 @@ def main():
                 print("\t \U0001F6AA Se ha terminado la ejecución del sistema\n\n\t\t \U0001F389 ::Muchas gracias:: \U0001F389")
                 funciones.EsperarTecla()
                 break
+            case "7":
+                Mod.ModificarMedicina()
+                funciones.EsperarTecla()
+            case "8":
+                BD.tabla_med_upd()
+                funciones.EsperarTecla()
+            case "9":
+                BD.exportar_tabla_med()
+                funciones.EsperarTecla()
             case _:
                 funciones.BorrarPantalla()
                 print("\tOpcion invalida, por favor vuelva a intentarlo\n")

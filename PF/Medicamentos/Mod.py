@@ -62,17 +62,21 @@ def BorrarMedicina():
     cursor.execute(f"SELECT `nombre de la marca` FROM medicamentos")
     dat1=cursor.fetchall()
     if len(dat1) <= 0:
-        print("\n\t\t \u26A0Este medicamento no se encuentra en la lista\u26A0")
+        print("\n\t\t \u26A0 ...No hay medicamentos en la lista... \u26A0")
     else:
-        a=[]
-        for i in dat1:
-            a+=i
-        a.sort()
-        print(a)
-        nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento a borrar: ").capitalize().strip()
-        cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
-        dat=cursor.fetchall()
-        cont=0
+        dat1.sort()
+        print(dat1)
+        rep=True
+        while rep:
+            nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento a borrar: ").capitalize().strip()
+            cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
+            dat=cursor.fetchall()
+            nomb=(nom, )
+            if nomb not in dat:
+                print("\n\t\t \u26A0Este medicamento no se encuentra en la lista\u26A0")
+                rep=True
+            else:
+                rep=False
         for pos in dat:
             if nom in pos:
                 print("\n\t \U0001F4C2 Se encontró un medicamento \U0001F50D ")
@@ -106,22 +110,26 @@ def BuscarMedicina():
     cursor.execute(f"SELECT `nombre de la marca` FROM medicamentos")
     dat=cursor.fetchall()
     if len(dat) > 0:
-        nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento: ").capitalize().strip()
-        nomb=(nom, )
-        if nomb not in dat:
-            print("\n\t\t \u26A0Este medicamento no se encuentra en la lista\u26A0")
-        else:
-            cont=0
-            print(f"{"ID":<3} | {"Nombre":<15} | {"Compuesto":<35} | {"Caducidad":<10} | {"Cantidad (mg/ml)":<20} | {"Presentación":<15} | {"Cantidad (presentación)":<25} | {"Precio ($)":<10} | {"Laboratorio":<10}")
-            print(f"{"___"*60}")
-            for pos in dat:
-                if nomb == pos:
-                    cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
-                    a=cursor.fetchone()
-                    print(f"{a[0]:<3} | {a[1]:<15} | {a[2]:<35} | {str(a[3]):<10} | {a[4]:<20} | {a[5]:<15} | {a[6]:<25} | {a[7]:<10} | {a[8]:<10}")
-                    cont+=1
-            print(f"{"___"*60}")
-            print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
+        rep=True
+        while rep:
+            nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento: ").capitalize().strip()
+            nomb=(nom, )
+            if nomb not in dat:
+                print("\n\t\t \u26A0Este medicamento no se encuentra en la lista\u26A0")
+                rep=True
+            else:
+                rep=False
+        cont=0
+        print(f"{"ID":<3} | {"Nombre":<15} | {"Compuesto":<35} | {"Caducidad":<10} | {"Cantidad (mg/ml)":<20} | {"Presentación":<15} | {"Cantidad (presentación)":<25} | {"Precio ($)":<10} | {"Laboratorio":<10}")
+        print(f"{"___"*60}")
+        for pos in dat:
+            if nomb == pos:
+                cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
+                a=cursor.fetchone()
+                print(f"{a[0]:<3} | {a[1]:<15} | {a[2]:<35} | {str(a[3]):<10} | {a[4]:<20} | {a[5]:<15} | {a[6]:<25} | {a[7]:<10} | {a[8]:<10}")
+                cont+=1
+        print(f"{"___"*60}")
+        print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
     else:
         print("\n\t\t \u274C ...No hay medicina en el sistema... \u274C")
     
@@ -158,6 +166,66 @@ def FechaCaducidad():
         print("\n\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
     else:
         print("\n\t\t \u274C ...No hay medicina en el sistema... \u274C")
+        
+def ModificarMedicina():
+    funciones.BorrarPantalla()
+    print("\n\t\t \U0001F4DB .::Modificar registros del medicamento::. \U0001F4DB")
+    cursor.execute(f"SELECT `nombre de la marca` FROM medicamentos")
+    dat1=cursor.fetchall()
+    if len(dat1) <= 0:
+        print("\n\t\t \u26A0 ...No hay medicamentos en la lista... \u26A0")
+    else:
+        dat1.sort()
+        print(dat1)
+        rep=True
+        while rep:
+            nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento a borrar: ").capitalize().strip()
+            cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
+            dat=cursor.fetchone()
+            if nom not in dat:
+                print("\u26A0 Este elemento no se encuentra en la lista \u26A0")
+            else:
+                rep=False
+            print("\n\t \U0001F4C2 Se encontró un medicamento \U0001F50D ")
+            print(dat)
+            opc=True
+            while opc:
+                try:
+                    opc=int(input(f"\n¿Qué desea modificar  {nom} {dat[4]}?\n 1.- Nombre comercial\n 2.- Nombre del compuesto\n 3.- Caducidad\n 4.- Peso/volumen (ml/mg)\n 5.- Presentación \n 6.- Cantidad\n 7.- Precio ($)\n 8.- Laboratorio\n (1-8): "))
+                except ValueError:
+                    print("\u274C Operación no válida, ingrese solo números \u274C ")
+                    opc=True
+                match opc:
+                    case 1:
+                        valor="`nombre de la marca`"
+                        opc=False
+                    case 2:
+                        valor="`nombre del compuesto activo`"
+                        opc=False
+                    case 3:
+                        valor="caducidad"
+                        opc=False
+                    case 4:
+                        valor="`ml/mg`"
+                        opc=False
+                    case 5:
+                        valor="presentacion"
+                        opc=False
+                    case 6:
+                        valor="cantidad"
+                        opc=False
+                    case 7:
+                        valor="`precio al publico`"
+                        opc=False
+                    case 8:
+                        valor="laboratorio"
+                        opc=False
+                    case _:
+                        print("\u274C Operación no válida, ingrese solo números \u274C ")
+            new=input(f"\n Ingrese el nuevo valor de {valor}: ").capitalize().strip()
+            cursor.execute(f"UPDATE medicamentos SET {valor} = '{new}' WHERE ID = '{dat[0]}'")
+            conexion.commit()
+        print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
 
 if __name__ == "__main__":
     
