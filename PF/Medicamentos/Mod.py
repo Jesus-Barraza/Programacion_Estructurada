@@ -25,7 +25,7 @@ def AgregarMedicina():
     volver=True
     while volver:
         try:
-            med=int(input("\n \U0001F4DD Ingrese la medida de la medicina (ml/mg) (solo número): "))
+            med=int(input("\n \U0001F4DD Ingrese la concentracion de la medicina (ml/mg) (solo número): "))
         except ValueError:
             print("\u274C Operación no válida, ingrese solo números \u274C ")
         else:
@@ -254,4 +254,5 @@ if __name__ == "__main__":
 #        print(f"\n\t \U00000024 Se ha ganado un total de ${total} con la venta de {cont} productos")
 #        print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
 #    else:
+
 #        print("\n\t\t \u274C ...No hay medicina en el sistema, por ende, no pudo haber ventas... \u274C")
