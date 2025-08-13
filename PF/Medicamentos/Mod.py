@@ -230,28 +230,3 @@ def ModificarMedicina():
 if __name__ == "__main__":
     
     pass
-
-#Funciones que serán trasladadas eventualmente
-#def AcumulacionVentas(dat):
-#    funciones.BorrarPantalla()
-#    print("\n\t\t \U00000024 .::Cálculo de acumulación de ventas::. \U00000024")
-#    if len(dat) > 0:
-#        total=0
-#        cont=0
-#        for i in dat:
-#            a=dat.get(i)
-#            corr=True
-#            while corr:
-#                try:
-#                    cant=int(input(f"\n \U0001F4DD Ingrese la cantidad de productos que se vendieron de {i}: "))
-#                except ValueError:
-#                    print("\u274C Operación no válida, ingrese solo números \u274C ")
-#                else:
-#                    corr=False
-#            vent=a[6]*cant
-#            total+=vent
-#            cont+=cant
-#        print(f"\n\t \U00000024 Se ha ganado un total de ${total} con la venta de {cont} productos")
-#        print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
-#    else:
-#        print("\n\t\t \u274C ...No hay medicina en el sistema, por ende, no pudo haber ventas... \u274C")
