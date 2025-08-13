@@ -14,7 +14,7 @@ def AgregarMedicina():
         try:
             year=(int(input("\n \U0001F4C5 Ingresa el año de la fecha de caducidad de la medicina (solo numeros): ")))
             mes=(int(input(" \U0001F4C5 Ingresa el mes de la fecha de caducidad de la medicina (solo numeros): ")))
-            dia=(int(input(" \U0001F4C5 Ingresa el mes de la fecha de caducidad de la medicina (solo numeros): ")))
+            dia=(int(input(" \U0001F4C5 Ingresa el dia de la fecha de caducidad de la medicina (solo numeros): ")))
         except ValueError:
             print("\u274C Operación no válida, ingrese solo números \u274C ")
         else:
@@ -35,7 +35,7 @@ def AgregarMedicina():
     volver=True
     while volver:
         try:
-            can=int(input(f"\n \U0001F4DD Ingrese la cantidad de medicina en {buff[4]} (solo número): "))
+            can=int(input(f"\n \U0001F4DD Ingrese la cantidad de {buff[4]} (solo número): "))
         except ValueError:
             print("\u274C Operación no válida, ingrese solo números \u274C ")
         else:
@@ -51,7 +51,7 @@ def AgregarMedicina():
             buff.append(pre)
             volver=False
     buff.append(input("\n \U0001F4DDIngrese el laboratorio donde fue presentado: ").capitalize().strip())
-    sql="INSERT INTO medicamentos (`nombre de la marca`, `nombre del compuesto activo`, caducidad, `ml/mg`, presentacion, cantidad, `precio al publico`, laboratorio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    sql="INSERT INTO medicamentos (Nombre_marca, Compuesto_activo, Caducidad, Concentracion, Presentacion, Cantidad, Precio, Laboratorio) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     cursor.execute(sql, buff)
     conexion.commit()
     print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
@@ -59,7 +59,7 @@ def AgregarMedicina():
 def BorrarMedicina():
     funciones.BorrarPantalla()
     print("\n\t\t \U0001F4DB .::Borrar registros del medicamento::. \U0001F4DB")
-    cursor.execute(f"SELECT `nombre de la marca` FROM medicamentos")
+    cursor.execute(f"SELECT Nombre_marca FROM medicamentos")
     dat1=cursor.fetchall()
     if len(dat1) <= 0:
         print("\n\t\t \u26A0 ...No hay medicamentos en la lista... \u26A0")
@@ -69,7 +69,7 @@ def BorrarMedicina():
         rep=True
         while rep:
             nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento a borrar: ").capitalize().strip()
-            cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
+            cursor.execute(f"SELECT * FROM medicamentos WHERE Nombre_marca = '{nom}'")
             dat=cursor.fetchall()
             nomb=(nom, )
             if nomb not in dat:
@@ -94,10 +94,10 @@ def MostrarMedicina():
     dat=cursor.fetchall()
     if len(dat) > 0:
         i=len(dat)
-        print(f"{"ID":<3} | {"Nombre":<25} | {"Compuesto":<60} | {"Caducidad":<10} | {"Cantidad (mg/ml)":<20} | {"Presentación":<15} | {"Cantidad (presentación)":<25} | {"Precio ($)":<10} | {"Laboratorio":<10}")
+        print(f"{"ID":<3} | {"Nombre":<40} | {"Compuesto":<55} | {"Caducidad":<10} | {"Cantidad (mg/ml)":<15} | {"Presentación":<11} | {"Cantidad (presentación)":<22} | {"Precio ($)":<10} | {"Laboratorio":<10}")
         print(f"{"___"*60}")
         for col in dat:
-            print(f"{col[0]:<3} | {col[1]:<25} | {col[2]:<60} | {str(col[3]):<10} | {col[4]:<20} | {col[5]:<15} | {col[6]:<25} | {col[7]:<10} | {col[8]:<10}")
+            print(f"{col[0]:<3} | {col[1]:<40} | {col[2]:<55} | {str(col[3]):<10} | {col[4]:<15} | {col[5]:<11} | {col[6]:<22} | {col[7]:<10} | {col[8]:<10}")
         print(f"{"___"*60}")
         print(f"\n\t \U0001F50D Hay un total de {i} medicamentos registrados \U0001F50D")
         print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
@@ -107,7 +107,7 @@ def MostrarMedicina():
 def BuscarMedicina():
     funciones.BorrarPantalla()
     print("\n\t\t \U0001F50D .::Buscar Medicamentos::. \U0001F50D ")
-    cursor.execute(f"SELECT `nombre de la marca` FROM medicamentos")
+    cursor.execute(f"SELECT Nombre_marca FROM medicamentos")
     dat=cursor.fetchall()
     if len(dat) > 0:
         rep=True
@@ -124,7 +124,7 @@ def BuscarMedicina():
         print(f"{"___"*60}")
         for pos in dat:
             if nomb == pos:
-                cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
+                cursor.execute(f"SELECT * FROM medicamentos WHERE Nombre_marca = '{nom}'")
                 a=cursor.fetchone()
                 print(f"{a[0]:<3} | {a[1]:<15} | {a[2]:<35} | {str(a[3]):<10} | {a[4]:<20} | {a[5]:<15} | {a[6]:<25} | {a[7]:<10} | {a[8]:<10}")
                 cont+=1
@@ -136,31 +136,31 @@ def BuscarMedicina():
 def FechaCaducidad():
     funciones.BorrarPantalla()
     print("\n\t\t \U0001F4C5 .::Lista de fecha de medicamentos::. \U0001F4C5")
-    cursor.execute(f"SELECT `nombre de la marca`, caducidad FROM medicamentos")
+    cursor.execute(f"SELECT Nombre_marca, Caducidad FROM medicamentos")
     dat=cursor.fetchall()
     if len(dat) > 0:
         fecha=datetime.now().date()
         dat.sort(key = lambda x: x[1])
-        cursor.execute(f"SELECT caducidad FROM medicamentos where caducidad < '{str(fecha)}'")
+        cursor.execute(f"SELECT Caducidad FROM medicamentos where Caducidad < '{str(fecha)}'")
         lista1=cursor.fetchall()
         if len(lista1) > 0:
             print("\n\t \u203C :::ESTE MEDICAMENTO ESTÁ CADUCADO::: \u203C")
             for a, e in dat:
                 if e < fecha:
                     e=str(e)
-                    cursor.execute(f"SELECT `nombre de la marca`, caducidad FROM medicamentos where caducidad = '{e}' AND `nombre de la marca` = '{a}'")
+                    cursor.execute(f"SELECT Nombre_marca, Caducidad FROM medicamentos where Caducidad = '{e}' AND Nombre_marca = '{a}'")
                     enlista1=cursor.fetchone()
                     print(f"{enlista1[0]:<35} {str(enlista1[1]):<10}")
                 else:
                     break
-        cursor.execute(f"SELECT caducidad FROM medicamentos where caducidad > '{str(fecha)}'")
+        cursor.execute(f"SELECT Caducidad FROM medicamentos where Caducidad > '{str(fecha)}'")
         lista2=cursor.fetchall()
         if len(lista2) > 0:
             print("\n\t \U0001F4C5 ...Este medicamento está todavía usable...")
             for a, e in dat:
                 if e > fecha:
                     e=str(e)
-                    cursor.execute(f"SELECT `nombre de la marca`, caducidad FROM medicamentos where caducidad = '{e}' AND `nombre de la marca` = '{a}'")
+                    cursor.execute(f"SELECT Nombre_marca, Caducidad FROM medicamentos where Caducidad = '{e}' AND Nombre_marca = '{a}'")
                     enlista2=cursor.fetchone()
                     print(f"{enlista2[0]:<35} {str(enlista2[1]):<10}")
         print("\n\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
@@ -170,7 +170,7 @@ def FechaCaducidad():
 def ModificarMedicina():
     funciones.BorrarPantalla()
     print("\n\t\t \U0001F4DB .::Modificar registros del medicamento::. \U0001F4DB")
-    cursor.execute(f"SELECT `nombre de la marca` FROM medicamentos")
+    cursor.execute(f"SELECT Nombre_marca FROM medicamentos")
     dat1=cursor.fetchall()
     if len(dat1) <= 0:
         print("\n\t\t \u26A0 ...No hay medicamentos en la lista... \u26A0")
@@ -180,7 +180,7 @@ def ModificarMedicina():
         rep=True
         while rep:
             nom=input("\n \U0001F50D Ingrese el nombre comercial del medicamento a borrar: ").capitalize().strip()
-            cursor.execute(f"SELECT * FROM medicamentos WHERE `nombre de la marca` = '{nom}'")
+            cursor.execute(f"SELECT * FROM medicamentos WHERE Nombre_marca = '{nom}'")
             dat=cursor.fetchone()
             if nom not in dat:
                 print("\u26A0 Este elemento no se encuentra en la lista \u26A0")
@@ -197,28 +197,28 @@ def ModificarMedicina():
                     opc=True
                 match opc:
                     case 1:
-                        valor="`nombre de la marca`"
+                        valor="Nombre_marca"
                         opc=False
                     case 2:
-                        valor="`nombre del compuesto activo`"
+                        valor="Compuesto_activo"
                         opc=False
                     case 3:
-                        valor="caducidad"
+                        valor="Caducidad"
                         opc=False
                     case 4:
-                        valor="`ml/mg`"
+                        valor="Concentracion"
                         opc=False
                     case 5:
-                        valor="presentacion"
+                        valor="Presentacion"
                         opc=False
                     case 6:
-                        valor="cantidad"
+                        valor="Cantidad"
                         opc=False
                     case 7:
-                        valor="`precio al publico`"
+                        valor="Precio"
                         opc=False
                     case 8:
-                        valor="laboratorio"
+                        valor="Laboratorio"
                         opc=False
                     case _:
                         print("\u274C Operación no válida, ingrese solo números \u274C ")
@@ -254,5 +254,4 @@ if __name__ == "__main__":
 #        print(f"\n\t \U00000024 Se ha ganado un total de ${total} con la venta de {cont} productos")
 #        print("\n\n\t\t \u2705 :::La operación se ha realizado con éxito::: \u2705")
 #    else:
-
 #        print("\n\t\t \u274C ...No hay medicina en el sistema, por ende, no pudo haber ventas... \u274C")
