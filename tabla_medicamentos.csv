@@ -1,0 +1,58 @@
+nombre de la marca,nombre del compuesto activo,caducidad,ml/mg,presentacion,cantidad,precio al publico,laboratorio
+Aspirina,acido acetilsalicilico,2027-10-01,500 mg,tableta,1,79.9,Bayer
+Aspitak-p,acido acetilsalicilico,2027-02-01,100 mg ,comprimidos,2,100,Son's
+Agin,acido acetilsalicilico/ acido ascorbico y sulfadiazina,2025-01-01,300 mg/ 250 mg/300 mg,tableta,1,185.9,nordin
+Alopurinol,Alopurinol,2026-08-01,300 mg,tableta,3,100,Neolpharma
+Bacat,Atorvastatina,2026-11-01,20 mg,Tableta,1,100,Landsteiner
+Aderogyl,"Retinol, Acido ascorbico, ergocalciferol",2026-07-01,"3.30 mg, 499.65 mg, 0,03 mg/ 3 ml",Ampolletas,1,245.9,Sanofi
+Aderogyl c,"Retinol, Acido ascorbico, ergocalciferol",2026-10-01,"275 mg, 1,000 mg 6000 mg/ 100 ml",Gotero,1,249,Sanofi
+Antiflu-Des Jr,"Amantadina/ clorfenamina, paracetamol",2026-11-01,60 mg,Jarabe ,3,189.9,Chinoin
+Antiflu-Des Pediatrico,"Amantadina/ clorfenamina, paracetamol",2026-09-01,30 ml,Gotero,3,189.9,Chinoin
+A.s cor,Norfenefrina,2026-10-01,1g/100 mL,Gotas,1,250,Sanfer
+Anara,Picosulfato Sodico,2027-06-01,7.5 mg/mL,Gotas,1,229.9,Chinoin
+Antiflu-Des,"Amantadina/ clorfenamina, paracetamol",2026-11-01,50 mg/ 3 mg/ 300 mg,Capsulas,2,209.9,Chinoin
+Clamoxin ,Amoxicilina / Acido Clavulanico,2027-01-01,875 mg/ 125 mg,Tableta,10,250,Maver
+Gimalxina ,Amoxicilina ,2027-10-01,500 mg,Capsulas,3,146,Collins
+Pentiver,Ampicilina  ,2026-01-01,250 mg/5 ml ,Suspension ,2,141,Maver
+Lesaclor,Aciclovir,2026-12-01,200 mg/ 5 ml,Suspension ,2,230,Mavi
+Lesaclor,Aciclovir,2027-08-01,400 mg,Tableta,4,370,Mavi
+Soviclor,Aciclovir,2025-05-01,0.05 g/ 1g,Crema,3,146,Collins
+Advil,Ibuprofeno ,2026-08-01,400 mg,Capsulas,2,215,Pfizer
+Amikacina,Amicacina,2026-03-01,100 mg/ 2 ml,Ampolletas,6,45,Amsa
+Nalixone,Acido Nalidixico / Fenazopiridina,2026-07-01,500 mg/ 50 mg,Tableta,2,438,Son's
+Argental,Sulfadiazina de plata,2024-07-01,1.00%,Crema,1,159.9,MD Liferpal
+Arnica de la abuela,,2024-04-01,,unguento,2,89.9,Bremer
+Alin,Dexametasona,2028-11-01,8 mg/ 2ml,Ampolletas,1,109.9,Chinoin
+Alin Depot,Dexametasona,2028-02-01,4mg/ml,Ampula,5,299,Chinoin
+Norabindo ,Amiodarona,2026-03-01,200 mg,Tabletas,2,950,Aurovida
+Cilocid,Acido Folico,2024-06-01,5 mg,Tabletas,1,27,Bruluagsa
+Amlodipino,Amlodipino,2025-08-01,5 mg,Tabletas,2,338,Ultra
+Lalpro,Amlodipino,2026-08-01,5 mg,Tableta,2,285,Kener
+Clamoxin Junior,Amoxicilina / Acido Clavulanico,2026-06-01,400 mg - 57 mg/5ml,Suspension ,8,225,Maver
+Cicloferon,Aciclovir,2026-03-01,5%,Crema,1,90,Liomont
+Cicloferon,Aciclovir,2026-05-01,5g/100 mL,Spray,1,746,Liomont
+Penipot,Bencilpenicilina procainica con bencilpenicilina  cristalina,2026-03-01,800 000 Ui ,Inyectable ,17,70,Amsa
+Penipot,Bencilpenicilina procainica con bencilpenicilina  cristalina,2025-12-01,400 000 Ui,Inyectable ,10,60,Amsa
+Ambroxol,Ambroxol,2026-03-01,300 mg/100 mL ,Jarabe ,5,89,Loeffler
+Apotex,Ambroxol,2029-03-01,15 mg/ 5 mL,Jarabe ,1,109,Protein
+Brogal t,Ambroxol/Dextrometorfano,2027-02-01,225 mg/225 mg/100 mL,Jarabe ,1,163,Rayere
+Debequin,Dextrometorfano ,2027-08-01,300 mg/100 mL,jarabe ,2,168,Degort's
+Fluxol,Salbutamol/Ambroxol,2026-08-01,40 mg-150 mg/100 mL,Jarabe ,3,129,Maver
+Buscapina Compositum,Hioscina/Metamizol Sodico,2026-03-01,20mg/2.5 g/5mL,Inyectable ,1,529.9,Sanofi
+Busconet,Hioscina/Metamizol Sodico,2027-08-01,"20 mg, 2.5 g / 5 mg",Inyectable ,14,223,Son's
+Betahistina,Betahistina,2026-12-01,24 mg,Tabletas,4,180,Amsa
+Biomesina Compuesta,Butilbromuro de hioscina/ Metamizol Sodico,2026-08-01,10 mg/ 250 mg,Tableta,5,191,Biomep
+Bedoyecta,"Complejo B, Acido Folico, vitamina c y rutina",2026-03-01,,Capsulas,1,493,Grossman
+Bio Electro,"Paracetamol, Acido acetilsalicilico, Cafeina",2024-10-01,250 mg/250 mg/ 65 mg,Tabletas,1,105,Genomma Lab
+Bicarbonato de Sodio Puro,Bicarbonato de Sodio Puro,2028-12-01,,Polvo,3,24.9,Quimicos Cali
+Nesajar,"Pinaverio, Dimeticona",2026-08-01,100 mg/300 mg,Capsulas,1,320,Gel pharma
+Divelgel,"Pinaverio, Dimeticona",2026-12-01,100 mg/300 mg,Capsulas,7,315,Progela
+Distental,Pinaverio,2026-05-01,100 mg,Tableta,2,200,Mavi
+"Bromuro de Ipratropio, Salbultamol","Bromuro de Ipratropio, Salbultamol",2026-07-01,0.5 mg/ 2.5 mg,Ampolletas,1,401,Pharmalife
+Bano coloide,,2026-10-01,,Polvo,2,202,Serral
+Bedoyecta Tri,"Hidroxocobalamina, Tiamina, Piridoxina",2026-06-01,"10,000 mcg, 100 mg, 50 mg/ 2mL",Inyectable ,2,685,Grossman
+Nibezvag,Bezafibrato,2026-12-01,200 mg,Tabletas,4,90,Novag
+Texoven,Benzonatato,2026-04-01,100 mg,Capsulas,1,149,Tecnofarma
+Barmicil,"Betametasona, clotrimazol, gentamicina",2027-02-01,50 mg/1g/0.1g,Crema,2,230,Son's
+Caztronin,Azitromicina ,2026-05-01,500 mg,Tabletas,5,425,RAAM
+Sicalan,Azitromicina ,2027-01-01,200 ml/5 ml,Jarabe ,5,499,Loeffler
